@@ -4,16 +4,10 @@ import javax.swing.*;
 public class CityScape extends JPanel {
 
     private static int width = 1020;
-    public static int height = 640; // make better
+    private static int height = 640;
     private Building[] b = new Building[8];
 
-    private static ArrayList<Integer[]> stars = new ArrayList<>();
-
-    static {
-        for (int i = 0; i < 150; i++) {
-            stars.add(new Integer[]{(int) Math.floor(Math.random() * width), (int) Math.floor(Math.random() * height)});
-        }
-    }
+    private ArrayList<Integer[]> stars = new ArrayList<>();
 
     public CityScape() {
         int[] xWindows = {3, 2, 3, 5, 4, 4, 1, 3};
@@ -25,7 +19,9 @@ public class CityScape extends JPanel {
             curr += 10 + xWindows[i]*30 + (xWindows[i]+1)*5;
         }
 
-
+        for (int i = 0; i < 150; i++) {
+            stars.add(new Integer[]{(int) Math.floor(Math.random() * width), (int) Math.floor(Math.random() * height)});
+        }
     }
 
     @Override
@@ -48,7 +44,6 @@ public class CityScape extends JPanel {
     public static void main(String[] args) {
         JFrame frame = new JFrame("My Drawing");
 
-//Add our JPanel to the frame
         CityScape cityScape = new CityScape();
 
         frame.add(cityScape);

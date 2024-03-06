@@ -11,6 +11,8 @@ public class Building {
     private double lights;
     private int windowWidth = 30;
     private int windowGap = 5;
+    private int antennaLocation;
+    private int antennaHeight;
     ArrayList<Integer> xvalues = new ArrayList<>();
 
     ArrayList<Integer> yvalues = new ArrayList<>();
@@ -41,6 +43,9 @@ public class Building {
                 lightsOn.put(new Integer[] {i, j}, Math.random() >= lights);
             }
         }
+
+        antennaLocation = 1 + (int) (Math.random()*(getWidth()-1));
+        antennaHeight = (int) (Math.random()*(51) + 50);
     }
 
 
@@ -50,19 +55,21 @@ public class Building {
 
         g2d.setColor(Color.YELLOW);
         for (Integer[] i : lightsOn.keySet()) {
-            if (lightsOn.get(i)) {
-                g2d.setColor(Color.YELLOW);
-            } else {
-                g2d.setColor(Color.BLACK);
-            }
+            g2d.setColor(lightsOn.get(i) ? Color.YELLOW : Color.BLACK);
             g2d.fillRect(x+i[0], y+i[1], windowWidth, windowWidth);
         }
 
-        float[] hsb = Color.RGBtoHSB(150, 75, 0, null);
+        //Door
+        float[] hsb = Color.RGBtoHSB(94, 42, 4, null);
         g2d.setColor(Color.getHSBColor(hsb[0], hsb[1], hsb[2]));
-        g2d.fillRect(x+(this.getWidth())/2-9, CityScape.height-20, 18, 20);
+        g2d.fillRect(x+(this.getWidth())/2-9, y+getHeight()-20, 18, 20);
         g2d.setColor(Color.BLACK);
-        g2d.fillRect(x+(this.getWidth())/2-1, CityScape.height-20, 2, 20);
+        g2d.fillRect(x+(this.getWidth())/2-1, y+getHeight()-20, 2, 20);
+
+        //Antenna
+        g2d.setColor(Color.GRAY);
+        g2d.fillRect(x+antennaLocation-1, y-antennaHeight, 2, antennaHeight);
+        g2d.fillOval(x+antennaLocation-5, y-antennaHeight-5, 10, 10);
     }
 
     public int getHeight() {
