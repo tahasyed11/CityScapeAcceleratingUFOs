@@ -60,8 +60,7 @@ public class Building {
         }
 
         //Door
-        float[] hsb = Color.RGBtoHSB(94, 42, 4, null);
-        g2d.setColor(Color.getHSBColor(hsb[0], hsb[1], hsb[2]));
+        g2d.setColor(Util.getColor(94, 42, 4));
         g2d.fillRect(x+(this.getWidth())/2-9, y+getHeight()-20, 18, 20);
         g2d.setColor(Color.BLACK);
         g2d.fillRect(x+(this.getWidth())/2-1, y+getHeight()-20, 2, 20);
