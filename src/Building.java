@@ -1,7 +1,10 @@
+import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Set;
 
 public class Building {
     private int x;
@@ -53,10 +56,13 @@ public class Building {
         g2d.setColor(Color.GRAY);
         g2d.fillRect(x,y,xWindows*windowWidth + (this.xWindows+1)*windowGap, yWindows*windowWidth + (this.yWindows+1)*windowGap + 30);
 
-        g2d.setColor(Color.YELLOW);
+        //windows
         for (Integer[] i : lightsOn.keySet()) {
             g2d.setColor(lightsOn.get(i) ? Color.YELLOW : Color.BLACK);
             g2d.fillRect(x+i[0], y+i[1], windowWidth, windowWidth);
+            //curtains
+            Image curtains = new ImageIcon("curtains.png").getImage();
+            g2d.drawImage(curtains, x+i[0], y+i[1], null);
         }
 
         //Door
@@ -64,6 +70,9 @@ public class Building {
         g2d.fillRect(x+(this.getWidth())/2-9, y+getHeight()-20, 18, 20);
         g2d.setColor(Color.BLACK);
         g2d.fillRect(x+(this.getWidth())/2-1, y+getHeight()-20, 2, 20);
+        //Door 2.0
+        Image door = new ImageIcon("door.png").getImage();
+        g2d.drawImage(door, x+(this.getWidth())/2-9, y+getHeight()-20, null);
 
         //Antenna
         g2d.setColor(Color.GRAY);
