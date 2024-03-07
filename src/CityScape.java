@@ -29,12 +29,22 @@ public class CityScape extends JPanel {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setColor(Color.BLACK);
         g2d.fillRect(0, 0, width, height);
-        g2d.setColor(Color.WHITE);
 
+        //stars
+        g2d.setColor(Color.WHITE);
         for (Integer[] arr : stars) {
             g2d.fillOval(arr[0], arr[1], 5, 5);
         }
 
+        //moon
+        g2d.setColor(Color.WHITE);
+        g2d.fillOval(60, 60, 110, 110);
+        g2d.setColor(Color.BLACK);
+        g2d.fillOval(80, 50, 110, 110);
+
+
+        //buildings
+        g2d.setColor(Color.GRAY);
         for (Building k : b) {
             k.paint(g2d);
         }
